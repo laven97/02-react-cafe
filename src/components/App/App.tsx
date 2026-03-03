@@ -2,9 +2,10 @@ import { useState } from "react";
 import css from "./App.module.css";
 import type { VoteType } from "../../types/votes";
 import CafeInfo from "../CafeInfo/CafeInfo";
-import VoteOptions from "../VotesOption/VoteOptions";
-import VoteStatus from "../VoteStatus/VoteStatus";
+import VoteOptions from "../VotesOptions/VoteOptions";
+
 import Notification from "../Notification/Notification";
+import VoteStats from "../VoteStats/VoteStats";
 
 export default function App() {
   const [votes, setVotes] = useState({
@@ -14,7 +15,7 @@ export default function App() {
   });
 
   const totalVotes = votes.good + votes.neutral + votes.bad;
-  const positiveRating = totalVotes
+  const positiveRate = totalVotes
     ? Math.round((votes.good / totalVotes) * 100)
     : 0;
 
@@ -38,10 +39,10 @@ export default function App() {
       }
 
       {totalVotes ? (
-        <VoteStatus
+        <VoteStats
           votes={votes}
           totalVotes={totalVotes}
-          positiveRate={positiveRating}
+          positiveRate={positiveRate}
         />
       ) : (
         <Notification />
